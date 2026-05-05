@@ -1,4 +1,4 @@
-# codex-goal-skill
+# goal-prompt-builder
 
 > **一个让你的 `/goal` 不跑偏的 Claude Skill。**
 
@@ -19,7 +19,7 @@ OpenAI Codex CLI 0.128 上线了 `/goal` 命令——一个带运行时审计、
 ```bash
 # 装（一次性）
 curl -L -o /tmp/goal-prompt-builder.skill \
-  https://github.com/win4r/codex-goal-skill/raw/main/goal-prompt-builder.skill
+  https://github.com/win4r/goal-prompt-builder/raw/main/goal-prompt-builder.skill
 mkdir -p ~/.claude/skills && unzip -o /tmp/goal-prompt-builder.skill -d ~/.claude/skills/
 
 # 用（在任何 Claude 对话里说）
@@ -107,7 +107,7 @@ Use a token budget of <N> tokens for this goal.
 
 ```bash
 curl -L -o /tmp/goal-prompt-builder.skill \
-  https://github.com/win4r/codex-goal-skill/raw/main/goal-prompt-builder.skill
+  https://github.com/win4r/goal-prompt-builder/raw/main/goal-prompt-builder.skill
 mkdir -p ~/.claude/skills
 unzip -o /tmp/goal-prompt-builder.skill -d ~/.claude/skills/
 rm /tmp/goal-prompt-builder.skill
@@ -116,13 +116,13 @@ rm /tmp/goal-prompt-builder.skill
 ### 方式 2：clone + 软链接
 
 ```bash
-git clone https://github.com/win4r/codex-goal-skill.git
-ln -s "$(pwd)/codex-goal-skill/goal-prompt-builder" ~/.claude/skills/goal-prompt-builder
+git clone https://github.com/win4r/goal-prompt-builder.git
+ln -s "$(pwd)/goal-prompt-builder/goal-prompt-builder" ~/.claude/skills/goal-prompt-builder
 ```
 
 ### 方式 3：手动
 
-从 [Releases 页面](https://github.com/win4r/codex-goal-skill/releases) 下载 `goal-prompt-builder.skill`（或者直接把本仓库的 `goal-prompt-builder/` 目录拷贝过去），放到你的 Claude skills 目录：
+从 [Releases 页面](https://github.com/win4r/goal-prompt-builder/releases) 下载 `goal-prompt-builder.skill`（或者直接把本仓库的 `goal-prompt-builder/` 目录拷贝过去），放到你的 Claude skills 目录：
 
 - **Claude Code**：`~/.claude/skills/`
 - **Claude Desktop**：见 [Anthropic 官方文档](https://docs.claude.com)
@@ -284,7 +284,7 @@ Use a token budget of 120000 tokens.
 ## 仓库结构
 
 ```
-codex-goal-skill/
+goal-prompt-builder/
 ├── README.md                       (英文版)
 ├── README_CN.md                    (这份)
 ├── LICENSE                         (MIT)
@@ -304,7 +304,7 @@ codex-goal-skill/
 `.skill` 文件就是 `goal-prompt-builder/` 文件夹的 zip。改完之后重新打包：
 
 ```bash
-cd codex-goal-skill
+cd goal-prompt-builder
 zip -r goal-prompt-builder.skill goal-prompt-builder/ \
   -x "*.DS_Store" "*__pycache__*"
 ```

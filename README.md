@@ -1,4 +1,4 @@
-# codex-goal-skill
+# goal-prompt-builder
 
 > **A Claude Skill for writing high-quality `/goal` prompts that don't go off the rails.**
 
@@ -19,7 +19,7 @@ This skill makes that failure mode hard to hit. It walks Claude (or you) through
 ```bash
 # Install (one-time)
 curl -L -o /tmp/goal-prompt-builder.skill \
-  https://github.com/win4r/codex-goal-skill/raw/main/goal-prompt-builder.skill
+  https://github.com/win4r/goal-prompt-builder/raw/main/goal-prompt-builder.skill
 mkdir -p ~/.claude/skills && unzip -o /tmp/goal-prompt-builder.skill -d ~/.claude/skills/
 
 # Use (in any Claude conversation)
@@ -107,7 +107,7 @@ Use a token budget of <N> tokens for this goal.
 
 ```bash
 curl -L -o /tmp/goal-prompt-builder.skill \
-  https://github.com/win4r/codex-goal-skill/raw/main/goal-prompt-builder.skill
+  https://github.com/win4r/goal-prompt-builder/raw/main/goal-prompt-builder.skill
 mkdir -p ~/.claude/skills
 unzip -o /tmp/goal-prompt-builder.skill -d ~/.claude/skills/
 rm /tmp/goal-prompt-builder.skill
@@ -116,13 +116,13 @@ rm /tmp/goal-prompt-builder.skill
 ### Option 2: Clone and link
 
 ```bash
-git clone https://github.com/win4r/codex-goal-skill.git
-ln -s "$(pwd)/codex-goal-skill/goal-prompt-builder" ~/.claude/skills/goal-prompt-builder
+git clone https://github.com/win4r/goal-prompt-builder.git
+ln -s "$(pwd)/goal-prompt-builder/goal-prompt-builder" ~/.claude/skills/goal-prompt-builder
 ```
 
 ### Option 3: Manual
 
-Download `goal-prompt-builder.skill` from [the latest release](https://github.com/win4r/codex-goal-skill/releases) (or copy the `goal-prompt-builder/` folder from this repo) into your Claude skills directory:
+Download `goal-prompt-builder.skill` from [the latest release](https://github.com/win4r/goal-prompt-builder/releases) (or copy the `goal-prompt-builder/` folder from this repo) into your Claude skills directory:
 
 - **Claude Code**: `~/.claude/skills/`
 - **Claude Desktop**: see [Anthropic's docs](https://docs.claude.com)
@@ -282,7 +282,7 @@ The full rule set is in `goal-prompt-builder/SKILL.md` under "Hard rules".
 ## Repository structure
 
 ```
-codex-goal-skill/
+goal-prompt-builder/
 ├── README.md                       (this file)
 ├── README_CN.md                    (中文版)
 ├── LICENSE                         (MIT)
@@ -302,7 +302,7 @@ codex-goal-skill/
 The `.skill` file is just a zip of the `goal-prompt-builder/` folder. To rebuild after editing:
 
 ```bash
-cd codex-goal-skill
+cd goal-prompt-builder
 zip -r goal-prompt-builder.skill goal-prompt-builder/ \
   -x "*.DS_Store" "*__pycache__*"
 ```
