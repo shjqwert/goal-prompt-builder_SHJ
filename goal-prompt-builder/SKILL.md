@@ -1,6 +1,6 @@
 ---
 name: goal-prompt-builder
-description: Build high-quality /goal commands for OpenAI Codex CLI 0.128+ that maximize audit-friendliness and minimize false-completion. Use this skill whenever the user wants to write, draft, generate, improve, or refine a /goal prompt — even if they don't say "skill" — including phrases like "help me write a goal", "design a goal for X", "review my goal command", "make a goal for this repo", or any request involving long-running Codex tasks. Also trigger when the user mentions Ralph loop, persistent agent objectives, or asks Codex to "keep working until done". Produces a complete, copy-pasteable /goal command using the 5-section golden template (Objective/Scope/Constraints/Done when/Stop if), supports three interaction modes (step-by-step, full-description, hybrid), auto-detects project type (Node/Python/Swift/Go/Rust/static) by inspecting filesystem or repo URL, reads AGENTS.md/CLAUDE.md if present, and predicts audit-friendliness before output.
+description: Use when the user wants to write, draft, improve, review, or refine a Codex /goal command, including long-running objectives, persistent agent tasks, Ralph loop prompts, or requests to keep working until done.
 ---
 
 # /goal Prompt Builder
@@ -44,16 +44,17 @@ Use a token budget of <N> tokens for this goal.
 
 ## Workflow
 
-When this skill triggers, walk the user through these 6 steps. Step 0 (interaction mode) and Step 1 (project detection) happen automatically — Step 0 needs one user choice, Step 1 needs zero if filesystem is accessible. Don't skip steps unless the user explicitly says "I'll fill it in myself, just give me the template".
+When this skill triggers, walk the user through these 6 steps. Step 0 (interaction mode) and Step 1 (project detection) happen automatically. Default to hybrid mode unless the user asks for step-by-step, full-description, or explicit mode selection. Don't skip steps unless the user explicitly says "I'll fill it in myself, just give me the template".
 
 ### Step 0: Pick interaction mode
 
-This skill supports three interaction modes. Ask **once** at the start:
+This skill supports three interaction modes. Default to hybrid mode and proceed. In normal use, only ask the user to choose a mode when they explicitly request control over the interaction style, when the task is unusually high-stakes, or when their request is too underspecified to continue safely.
 
-> 你希望用哪种方式生成 /goal？
-> - **A. 询问式** — 我一段一段问你（最稳，适合第一次写 /goal）
-> - **B. 全描述式** — 你一句话描述需求，我拆解后只问你确认不确定的地方（最快，适合熟手）
-> - **C. 混合式（默认）** — 先选场景模板，再问 3-5 个关键问题（推荐）
+Available modes:
+
+- **A. 询问式** — 我一段一段问你（最稳，适合第一次写 /goal）
+- **B. 全描述式** — 你一句话描述需求，我拆解后只问你确认不确定的地方（最快，适合熟手）
+- **C. 混合式（默认）** — 先选场景模板，再问 3-5 个关键问题（推荐）
 
 Once chosen, follow the matching flow:
 
@@ -63,7 +64,7 @@ Once chosen, follow the matching flow:
 
 Mode B is most powerful when the user has thought about the task. Mode A is safest when they haven't. Mode C is the default sweet spot.
 
-If the user doesn't answer this question explicitly, default to mode C and proceed.
+If no explicit mode is provided, use mode C and proceed.
 
 ### Step 1: Detect (don't ask) the project type
 

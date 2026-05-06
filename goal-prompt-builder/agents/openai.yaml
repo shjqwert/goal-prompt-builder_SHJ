@@ -1,0 +1,7 @@
+interface:
+  display_name: "Goal Prompt Builder"
+  short_description: "Draft audit-friendly Codex /goal commands."
+  default_prompt: "Use $goal-prompt-builder to draft an audit-friendly Codex /goal command for my task."
+
+policy:
+  allow_implicit_invocation: true
